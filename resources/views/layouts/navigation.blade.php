@@ -12,7 +12,11 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <!-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link> -->
+
+                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
@@ -36,6 +40,39 @@
                     <x-nav-link :href="route('distributor.index')" :active="request()->routeIs('distributor.*')">
                         {{ __('Distributor') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('pelanggan.index')" :active="request()->routeIs('pelanggan.*')">
+                        {{ __('Pelanggan') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('pembelian.index')" :active="request()->routeIs('pembelian.*')">
+                        {{ __('Pembelian') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('penjualan.index')" :active="request()->routeIs('penjualan.*')">
+                        {{ __('Penjualan') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('pengiriman.index')" :active="request()->routeIs('pengiriman.*')">
+                        {{ __('Pengiriman') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('keranjang.index')" :active="request()->routeIs('keranjang.*')">
+                        {{ __('Keranjang') }}
+                    </x-nav-link>
+
+                    <!-- <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                        {{ __('Users') }}
+                    </x-nav-link> -->
+                    @php
+                        $jabatan = auth()->user()->jabatan ?? null;
+                    @endphp
+
+                    @if(in_array($jabatan, ['admin', 'pemilik']))
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                            {{ __('Users') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -95,7 +132,11 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <!-- <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                {{ __('Dashboard') }}
+            </x-responsive-nav-link> -->
+
+            <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
@@ -111,13 +152,48 @@
                 {{ __('Metode Bayar') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('jenis-pengiriman.index')" :active="request()->routeIs('jenis-pengiriman.*')">
+            <x-responsive-nav-link :href="route('jenis-pengiriman.index')"
+                :active="request()->routeIs('jenis-pengiriman.*')">
                 {{ __('Jenis Pengiriman') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('distributor.index')" :active="request()->routeIs('distributor.*')">
                 {{ __('Distributor') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('pelanggan.index')" :active="request()->routeIs('pelanggan.*')">
+                {{ __('Pelanggan') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('pembelian.index')" :active="request()->routeIs('pembelian.*')">
+                {{ __('Pembelian') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('penjualan.index')" :active="request()->routeIs('penjualan.*')">
+                {{ __('Penjualan') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('pengiriman.index')" :active="request()->routeIs('pengiriman.*')">
+                {{ __('Pengiriman') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('keranjang.index')" :active="request()->routeIs('keranjang.*')">
+                {{ __('Keranjang') }}
+            </x-responsive-nav-link>
+
+            <!-- <x-responsive-nav-link :href="route('user.index')" :active="request()->routeIs('user.*')">
+                {{ __('Users') }}
+            </x-responsive-nav-link> -->
+
+            @php
+                $jabatan = auth()->user()->jabatan ?? null;
+            @endphp
+
+            @if(in_array($jabatan, ['admin', 'pemilik']))
+                <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                    {{ __('Users') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
